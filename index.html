@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Birthday Surprise ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="side-light left-light"></div>
+    <div class="side-light right-light"></div>
+    <div class="ambient-glow"></div>
+    <div id="hearts" class="hearts" aria-hidden="true"></div>
+    <canvas id="side-fx" class="side-fx" aria-hidden="true"></canvas>
+
+    <div id="lock-screen" class="lock-screen">
+        <div class="lock-timer">
+            <div><b id="lk-d">0</b><small>din</small></div>
+            <div><b id="lk-h">00</b><small>ghante</small></div>
+            <div><b id="lk-m">00</b><small>minute</small></div>
+            <div><b id="lk-s">00</b><small>second</small></div>
+        </div>
+    </div>
+    <button id="music-toggle" class="music-toggle" aria-label="Mute music">🔊</button>
+
+    <div id="countdown-overlay" class="countdown-overlay hidden">
+        <div class="countdown-subtitle">A little moment just for you</div>
+        <div id="countdown-number" class="countdown-number" aria-live="polite">10</div>
+        <div class="countdown-caption">Something magical is coming...</div>
+    </div>
+
+    <div id="birthday-finale" class="birthday-finale hidden">
+        <div class="finale-glow"></div>
+        <div class="finale-content">
+            <div class="finale-crown">✨ 🎂 ✨</div>
+            <h1>HAPPY<br><span>BIRTHDAY!</span></h1>
+            <p class="finale-message">May your day be as beautiful as your heart ❤️</p>
+            <div class="finale-sparkles">✦ ✧ ✦ ✧ ✦</div>
+            <button id="finale-continue" class="glow-button">Continue to Memories ❤️</button>
+        </div>
+    </div>
+
+    <div id="fireworks-container" class="fireworks-container"></div>
+    <div id="confetti-container" class="confetti-container"></div>
+
+    <main>
+        <section id="cake-section" class="section active">
+            <div class="section-content">
+                <p class="eyebrow">A LITTLE SURPRISE FOR YOU</p>
+                <h1 class="main-title">Make a <span>Wish</span> ✨</h1>
+                <p class="subtitle">A special day deserves a magical beginning.</p>
+                <div class="cake-scene">
+                    <div class="cake">
+                        <div class="candles">
+                            <div class="candle"><div class="flame"></div></div>
+                            <div class="candle"><div class="flame"></div></div>
+                            <div class="candle"><div class="flame"></div></div>
+                            <div class="candle"><div class="flame"></div></div>
+                            <div class="candle"><div class="flame"></div></div>
+                        </div>
+                        <div class="cake-top" tabindex="0" role="button" aria-label="Cut the cake">
+                            <div class="icing-drip"></div>
+                            <span class="cake-heart">♥</span>
+                        </div>
+                        <div class="cake-bottom"></div>
+                        <div class="cake-plate"></div>
+                        <div class="cake-cut-line"></div>
+                    </div>
+                    <button id="knife" class="knife" aria-label="Cut the cake">
+                        <span class="knife-blade"></span>
+                        <span class="knife-handle"></span>
+                    </button>
+                </div>
+                <p id="cake-instruction" class="instruction">Pehle wish maango aur candles par phoonk maaro 🎤, phir knife se cake kaato 🎂</p>
+                <button id="blow-button" class="glow-button">Phoonk Maaro 🎤</button>
+                <button id="cut-button" class="glow-button">Cut the Cake ❤️</button>
+            </div>
+        </section>
+
+        <section id="video-section" class="section">
+            <div class="section-content">
+                <p class="eyebrow">MADE WITH LOVE</p>
+                <h2 class="section-title">A Little <span>Memory</span> 🎬</h2>
+                <div class="video-frame">
+                    <video id="birthday-video" controls playsinline preload="metadata">
+                        <source src="birthday.mp4" type="video/mp4">
+                        Your browser does not support this video.
+                    </video>
+                </div>
+                <button id="skip-video" class="glow-button">Open Your Card 💝</button>
+            </div>
+        </section>
+
+        <section id="card-section" class="section">
+            <div class="section-content">
+                <p class="eyebrow">TAP THE CARD TO OPEN</p>
+                <h2 class="section-title">Your <span>Birthday Card</span> 💝</h2>
+                <div id="card" class="card" tabindex="0" role="button" aria-label="Flip the card">
+                    <div class="card-inner">
+                        <div class="card-face card-front">
+                            <div class="card-emoji">🎂</div>
+                            <h3 id="card-front-text"></h3>
+                            <span>for <b data-name></b></span>
+                        </div>
+                        <div class="card-face card-back">
+                            <h3>Dear <span data-name></span>,</h3>
+                            <p id="card-message"></p>
+                            <small id="card-from"></small>
+                        </div>
+                    </div>
+                </div>
+                <button id="card-next" class="glow-button">Our Moments 📸</button>
+            </div>
+        </section>
+
+        <section id="gallery-section" class="section">
+            <div class="section-content">
+                <p class="eyebrow">OUR MOMENTS</p>
+                <h2 class="section-title">Yaadon ki <span>Gallery</span> 📸</h2>
+                <div id="gallery" class="gallery"></div>
+                <button id="gallery-next" class="glow-button">Our Story 💞</button>
+            </div>
+        </section>
+
+        <section id="story-section" class="section">
+            <div class="section-content">
+                <p class="eyebrow">HAMARI KAHANI</p>
+                <h2 class="section-title">Our <span>Story</span> 💞</h2>
+                <ol id="timeline" class="timeline"></ol>
+                <button id="story-next" class="glow-button">Open Your Letter 💌</button>
+            </div>
+        </section>
+
+        <section id="balloon-section" class="section">
+            <div class="section-content">
+                <p class="eyebrow">SURPRISE</p>
+                <h2 class="section-title">Balloons <span>Phoro</span> 🎈</h2>
+                <div id="balloons" class="balloons"></div>
+                <p id="balloon-msg" class="balloon-msg"></p>
+                <button id="balloon-next" class="glow-button hidden">Ek Aur Surprise 🎁</button>
+            </div>
+        </section>
+
+        <section id="scratch-section" class="section">
+            <div class="section-content">
+                <p class="eyebrow">SCRATCH CARD</p>
+                <h2 class="section-title">Scratch <span>Karo</span> ✨</h2>
+                <p class="subtitle">Ungli se ragdo, neeche kuch chhupa hai</p>
+                <div class="scratch">
+                    <div id="scratch-prize" class="scratch-prize"></div>
+                    <canvas id="scratch-canvas" width="300" height="160"></canvas>
+                </div>
+                <button id="scratch-next" class="glow-button hidden">Open Your Letter 💌</button>
+            </div>
+        </section>
+
+        <section id="letter-section" class="section">
+            <div class="section-content">
+                <p class="eyebrow">SOMETHING FROM THE HEART</p>
+                <h2 class="section-title">A Letter <span>For You</span> 💌</h2>
+                <p class="subtitle">There are some words that deserve a special moment.</p>
+                <button id="envelope" class="envelope" aria-label="Open your letter">
+                    <span class="envelope-heart">♥</span>
+                    <span class="envelope-text">Open Me</span>
+                </button>
+                <div id="letter-card" class="letter-card hidden">
+                    <div class="scroll-rod"></div>
+                    <div class="letter-paper"><div class="letter-sheet"><div class="letter-inner">
+                        <h3>To <span data-name></span> ❤️</h3>
+                        <p id="letter-text"></p>
+                        <p id="letter-signature" class="letter-signature"></p>
+                        <button id="letter-next" class="glow-button">One Last Surprise 💖</button>
+                    </div></div></div>
+                    <div class="scroll-rod"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="wish-section" class="section">
+            <div class="section-content">
+                <p class="eyebrow">YOUR SPECIAL DAY</p>
+                <h1 class="wish-title">Happy Birthday <span data-name></span>! 🎂</h1>
+                <p class="wish-message">May your dreams come true, your heart stay happy,
+                    and your life be filled with love and magic. ❤️</p>
+                <button id="gift" class="gift" aria-label="Open your gift">🎁</button>
+                <p id="gift-hint" class="instruction">Tap the gift to open it</p>
+                <ul id="reasons" class="reasons hidden"></ul>
+                <div id="coupons" class="coupons hidden"></div>
+                <div class="wish-icons">🌹 ✨ 🎁 💖 🎉</div>
+                <button id="to-jar" class="glow-button">Make a Wish 🌠</button>
+            </div>
+        </section>
+        <section id="jar-section" class="section">
+            <div class="section-content">
+                <p class="eyebrow">MAKE A WISH</p>
+                <h2 class="section-title">Wish <span>Jar</span> 🫙</h2>
+                <p class="subtitle">Dil ki wish likho, ye taaron tak jayegi 🌠</p>
+                <div class="jar-wrap"><div class="jar">🫙<span id="jar-paper" class="jar-paper">📜</span></div></div>
+                <textarea id="wish-input" class="wish-input" maxlength="140" placeholder="Meri wish hai ke..."></textarea>
+                <button id="wish-send" class="glow-button">Jar Mein Daalo ✨</button>
+                <p id="wish-done" class="wish-done hidden">Apki wish aasmaan tak pohanch gayi 🌠</p>
+                <button id="wish-share" class="glow-button hidden">Wish Mujhe Bhejo 💌</button>
+                <button id="jar-next" class="glow-button hidden">Taaron Ke Neeche ✨</button>
+            </div>
+        </section>
+
+        <section id="sky-section" class="section">
+            <div class="sky-stars" id="sky-stars" aria-hidden="true"></div>
+            <div class="section-content">
+                <p class="eyebrow">APKE LIYE</p>
+                <h2 class="section-title">Taaron Ka <span>Naam</span> 🌌</h2>
+                <canvas id="sky-name" class="sky-name" width="600" height="200"></canvas>
+                <p id="life-counter" class="life-counter hidden"></p>
+                <button id="replay-button" class="glow-button">Replay the Surprise ↻</button>
+            </div>
+        </section>
+    </main>
+
+    <audio id="background-music" src="romantic_birthday.mp3" loop preload="auto"></audio>
+    <audio id="clapping-sound" src="clapping.mp3" preload="auto"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
